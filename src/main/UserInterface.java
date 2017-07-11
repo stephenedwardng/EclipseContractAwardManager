@@ -9,10 +9,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class UserInterface extends JFrame {
 
 	JPanel panel;
+	JPanel panelHero;
+	JPanel panelSpacer;
 	JPanel panel2;
 	JPanel panel3;
 	JPanel panel4;
@@ -25,7 +28,7 @@ public class UserInterface extends JFrame {
 	Color white = Color.decode("#ffffff");
 	Color red = Color.decode("#aa0000");
 	Color lightBlue = Color.decode("#8dd9f1");
-
+	Color progressBlue = Color.decode("#1353ef");
 
 	public static void main(String[] args) {
 		new UserInterface();
@@ -37,16 +40,28 @@ public class UserInterface extends JFrame {
 		this.setTitle("Contract Award Manager");
 		
 		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(20, 0, 50, 0));
 		this.add(panel);		
 		panel.setBackground(Color.white);
-		
-				
+
 		headerLabel();
+
+		panelHero = new JPanel();
+		panelHero.setBorder(new EmptyBorder(10, 0, 10, 0));
+		panel.add(panelHero);		
+		panelHero.setBackground(white);
+						
+		panelSpacer = new JPanel();
+		panelSpacer.setBorder(new EmptyBorder(20, 0, 10, 0));
+		panel.add(panelSpacer);		
+		panelSpacer.setBackground(white);
+		
 		heroImage();
 		progressBar();
 		progressLabel();
 
 		panel2 = new JPanel();
+		panel2.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel.add(panel2);		
 		panel2.setBackground(lightBlue);
 		liveContracts();
@@ -81,7 +96,7 @@ public class UserInterface extends JFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		panel.add(picture1);
+		panelHero.add(picture1);
 	}
 
 	public void progressBar() {
@@ -98,7 +113,6 @@ public class UserInterface extends JFrame {
 	public void progressLabel() {
 		progressLabel = new JLabel("of budget spent");
 		progressLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-		Color progressBlue = Color.decode("#1353ef");
 		progressLabel.setForeground(progressBlue);
 		panel.add(progressLabel);
 	}
