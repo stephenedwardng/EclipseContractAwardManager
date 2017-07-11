@@ -18,7 +18,7 @@ public class UserInterface extends JFrame {
 	}
 	
 	public UserInterface() {
-		this.setSize(800, 600);
+		this.setSize(1000, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Contract Award Manager");
 		
@@ -37,7 +37,7 @@ public class UserInterface extends JFrame {
 		
 		
 		try {
-		heroImage = ImageIO.read(new File("/Users/user/eclipse-workspace/heroImage.jpg"));
+		heroImage = ImageIO.read(new File("/Users/user/eclipse-workspace/heroImageTagline.jpg"));
 		picture1 = new JLabel(new ImageIcon(heroImage));
 		} catch (IOException e1) {
 			e1.printStackTrace();
