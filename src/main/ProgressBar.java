@@ -47,6 +47,7 @@ public class ProgressBar {
    private void showProgressBarDemo(){
       headerLabel.setText("Control in action: JProgressBar"); 
       progressBar = new JProgressBar(0, 100);
+      progressBar.setSize(200, 60);
       progressBar.setValue(50);
       progressBar.setStringPainted(true);
       startButton = new JButton("Start");
