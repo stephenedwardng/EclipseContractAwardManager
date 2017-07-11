@@ -274,4 +274,21 @@ public class Contract implements Reportable {
         return count;
     }
 
+    public static int countContractsByCategory(Cat category) {
+        int count = 0;
+        String sql = String.format("SELECT * FROM contracts WHERE category = '%s';", category);
+        ResultSet rs = SqlRunner.executeQuery(sql);
+
+        try {
+            while (rs.next()) {
+                count++;
+            }
+        }catch (Exception ex) {
+            System.exit(0);
+        } finally {
+            SqlRunner.closeConnection();
+        }
+        return count;
+    }
+
 }

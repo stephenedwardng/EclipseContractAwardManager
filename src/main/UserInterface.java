@@ -35,6 +35,8 @@ public class UserInterface extends JFrame {
 	Color red = Color.decode("#aa0000");
 	Color lightBlue = Color.decode("#8dd9f1");
 	Color progressBlue = Color.decode("#1353ef");
+	Color green = Color.decode("#00aa00");
+	Color orange = Color.decode("#ffaa00");
 
 	public static void main(String[] args) {
 		new UserInterface();
@@ -89,19 +91,19 @@ public class UserInterface extends JFrame {
 		panel2 = new JPanel();
 //		panel2.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel.add(panel2);		
-		panel2.setBackground(lightBlue);
+		panel2.setBackground(green);
 		liveContracts();
 
 		panel3 = new JPanel();
 		panel.add(panel3);		
-		panel3.setBackground(lightBlue);
+		panel3.setBackground(orange);
 		pipelineContracts();
 
 		panel4 = new JPanel();
 		panel.add(panel4);		
 		panel4.setBackground(red);
 		expiredContracts();
-
+			      
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
@@ -164,7 +166,7 @@ public class UserInterface extends JFrame {
 	public void expiredContracts() {
 		Integer numExpired = Contract.countContractsByStatus(Status.EXPIRED);
 		String numExpiredContracts = numExpired.toString();
-		expiredLabel = new JLabel(numExpired + " expired contracts");
+		expiredLabel = new JLabel(numExpiredContracts + " expired contracts");
 		expiredLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		expiredLabel.setForeground(white);
 		panel4.add(expiredLabel);
