@@ -31,6 +31,8 @@ public class UserInterface extends JFrame {
 	JPanel panel5;
 	JPanel panelSpacer3;
 	JPanel panel6;
+	JPanel panelSpacer4;
+	JPanel panel7;
 //	PieChart pieChart;
 	JPanel panelCategories;
 	JLabel headerLabel;
@@ -41,6 +43,7 @@ public class UserInterface extends JFrame {
 	JLabel expiredLabel;
 	JLabel catITLabel;
 	JLabel catFacilitiesLabel;
+	JLabel catTelecomLabel;
 	Color white = Color.decode("#ffffff");
 	Color red = Color.decode("#aa0000");
 	Color lightBlue = Color.decode("#8dd9f1");
@@ -70,7 +73,7 @@ public class UserInterface extends JFrame {
         contract3.save();
         Contract contract4 = new Contract("6 Phones", "Edward Ng", 4, Status.LIVE, Cat.TELECOM, 3, "2017-03-10", "2018-03-10", 25000, 35000, "Phones for central stall and instructors");
         contract4.save();
-        Contract contract5 = new Contract("Business Insurance", "Edward Ng", 5, Status.LIVE, Cat.INSURANCE, 5, "2017-08-09", "2018-08-09", 70000, 80000, "Insurance cover for business");
+        Contract contract5 = new Contract("Business Insurance", "Edward Ng", 5, Status.LIVE, Cat.FACILITIES, 5, "2017-08-09", "2018-08-09", 70000, 80000, "Insurance cover for business");
         contract5.save();
         Contract contract6 = new Contract("Fruit", "Edward Ng", 4, Status.PIPELINE, Cat.FACILITIES, 4, "2017-08-09", "2018-08-09", 2000, 1600, "Fruit to keep students healthy");
         contract6.save();
@@ -143,6 +146,15 @@ public class UserInterface extends JFrame {
 		panel6.setBackground(white);
 		categoriesFacilities();
 		
+		panelSpacer4 = new JPanel();
+		panelSpacer4.setBorder(new EmptyBorder(1, 300, 1, 0));
+		panel.add(panelSpacer4);		
+		panelSpacer4.setBackground(white);
+		
+		panel7 = new JPanel();
+		panel.add(panel7);		
+		panel7.setBackground(white);
+		categoriesTelecom();
 
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -233,6 +245,17 @@ public class UserInterface extends JFrame {
 		PieChart pieChart = new PieChart(num);
 		panel6.add(pieChart);
 	}
-	
+
+	public void categoriesTelecom() {
+		Integer num = Contract.countContractsByCategory(Cat.TELECOM);
+		String numContracts = num.toString();
+		catTelecomLabel = new JLabel("Contracts in Telecom: " + numContracts);
+		catTelecomLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		catTelecomLabel.setForeground(red);
+		panel7.add(catTelecomLabel);
+		PieChart pieChart = new PieChart(num);
+		panel7.add(pieChart);
+	}
+
 	
 }
