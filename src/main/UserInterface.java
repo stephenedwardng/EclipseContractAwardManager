@@ -11,7 +11,13 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import behaviours.Cat;
+import behaviours.Status;
+
 public class UserInterface extends JFrame {
+	
+	Buyer buyer;
+	Report report;
 
 	JPanel panel;
 	JPanel panelHero;
@@ -35,6 +41,26 @@ public class UserInterface extends JFrame {
 	}
 	
 	public UserInterface() {
+		
+        buyer = new Buyer("CodeClan", "SC009857568", 250000, "2018-04-05");
+        report = new Report(buyer);
+
+        Contract.deleteAll();
+        Contract contract1 = new Contract("200 MacBook Pros", "Edward Ng", 1, Status.LIVE, Cat.IT, 1, "2017-07-07", "2018-07-07", 40000, 45000, "Procurement of new laptops for new location in Aberdeen");
+        contract1.save();
+        Contract contract2 = new Contract("1000 CodeClan pens", "Edward Ng", 2, Status.PIPELINE, Cat.MARKETING, 4, "2017-10-10", "2018-10-10", 3000, 3000, "Procurement of promotional pens for events and students");
+        contract2.save();
+        Contract contract3 = new Contract("2 Soap Dispensers", "Edward Ng", 3, Status.EXPIRED, Cat.FACILITIES, 2, "2016-05-07", "2017-05-07", 1000, 1500, "Wall mounted soap dispensers");
+        contract3.save();
+        Contract contract4 = new Contract("6 Phones", "Edward Ng", 4, Status.LIVE, Cat.TELECOM, 3, "2017-03-10", "2018-03-10", 25000, 35000, "Phones for central stall and instructors");
+        contract4.save();
+        Contract contract5 = new Contract("Business Insurance", "Edward Ng", 5, Status.LIVE, Cat.INSURANCE, 5, "2017-08-09", "2018-08-09", 70000, 80000, "Insurance cover for business");
+        contract5.save();
+        Contract contract6 = new Contract("Fruit", "Edward Ng", 4, Status.PIPELINE, Cat.FACILITIES, 4, "2017-08-09", "2018-08-09", 2000, 1600, "Fruit to keep students healthy");
+        contract6.save();
+        Contract contract7 = new Contract("Projectors", "Edward Ng", 3, Status.EXPIRED, Cat.FACILITIES, 2, "2017-08-09", "2018-08-09", 5000, 4600, "Fruit to keep students healthy");
+        contract7.save();
+		
 		this.setSize(300, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Contract Award Manager");
@@ -61,7 +87,7 @@ public class UserInterface extends JFrame {
 		progressLabel();
 
 		panel2 = new JPanel();
-		panel2.setBorder(new EmptyBorder(10, 10, 10, 10));
+//		panel2.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel.add(panel2);		
 		panel2.setBackground(lightBlue);
 		liveContracts();
@@ -104,7 +130,7 @@ public class UserInterface extends JFrame {
 		budgetSpent.setStringPainted(true);
 		budgetSpent.setMinimumSize(getSize());
 		budgetSpent.setSize(600, 100);
-		budgetSpent.setValue(70);
+		budgetSpent.setValue(report.percentageBudgetSpent());
 		budgetSpent.setBackground(Color.white);
 		budgetSpent.setForeground(Color.red);
 		panel.add(budgetSpent);
@@ -118,21 +144,27 @@ public class UserInterface extends JFrame {
 	}
 
 	public void liveContracts() {
-		liveLabel = new JLabel("3 live contracts");
+		Integer numLive = Contract.countContractsByStatus(Status.LIVE);
+		String numLiveContracts = numLive.toString();
+		liveLabel = new JLabel(numLiveContracts + " live contracts");
 		liveLabel.setFont(new Font("Arial", Font.BOLD, 16));
 		liveLabel.setForeground(white);
 		panel2.add(liveLabel);
 	}
 	
 	public void pipelineContracts() {
-		pipelineLabel = new JLabel("2 pipeline contracts");
+		Integer numPipeline = Contract.countContractsByStatus(Status.PIPELINE);
+		String numPipelineContracts = numPipeline.toString();
+		pipelineLabel = new JLabel(numPipelineContracts + " pipeline contracts");
 		pipelineLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		pipelineLabel.setForeground(white);
 		panel3.add(pipelineLabel);
 	}
 
 	public void expiredContracts() {
-		expiredLabel = new JLabel("2 expired contracts");
+		Integer numExpired = Contract.countContractsByStatus(Status.EXPIRED);
+		String numExpiredContracts = numExpired.toString();
+		expiredLabel = new JLabel(numExpired + " expired contracts");
 		expiredLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 		expiredLabel.setForeground(white);
 		panel4.add(expiredLabel);
