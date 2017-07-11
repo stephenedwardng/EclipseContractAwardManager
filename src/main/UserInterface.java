@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,15 +23,21 @@ public class UserInterface extends JFrame {
 	JPanel panel;
 	JPanel panelHero;
 	JPanel panelSpacer;
+	JPanel panelBody;
 	JPanel panel2;
 	JPanel panel3;
 	JPanel panel4;
+	JPanel panelSpacer2;
+	JPanel panel5;
+//	PieChart pieChart;
+	JPanel panelCategories;
 	JLabel headerLabel;
 	JProgressBar budgetSpent;
 	JLabel progressLabel;
 	JLabel liveLabel;
 	JLabel pipelineLabel;
 	JLabel expiredLabel;
+	JLabel catITLabel;
 	Color white = Color.decode("#ffffff");
 	Color red = Color.decode("#aa0000");
 	Color lightBlue = Color.decode("#8dd9f1");
@@ -88,8 +95,9 @@ public class UserInterface extends JFrame {
 		progressBar();
 		progressLabel();
 
+		
+		
 		panel2 = new JPanel();
-//		panel2.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel.add(panel2);		
 		panel2.setBackground(green);
 		liveContracts();
@@ -103,7 +111,22 @@ public class UserInterface extends JFrame {
 		panel.add(panel4);		
 		panel4.setBackground(red);
 		expiredContracts();
-			      
+
+		panelSpacer2 = new JPanel();
+		panelSpacer2.setBorder(new EmptyBorder(5, 300, 5, 0));
+		panel.add(panelSpacer2);		
+		panelSpacer2.setBackground(white);
+
+		panel5 = new JPanel();
+		panel.add(panel5);		
+		panel5.setBackground(white);
+		categoriesIT();
+
+//		panelCategories = new JPanel();
+//		panel.add(panelCategories);		
+//		panelCategories.setBackground(white);
+		
+
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
@@ -172,5 +195,18 @@ public class UserInterface extends JFrame {
 		panel4.add(expiredLabel);
 	}
 
+	public void categoriesIT() {
+		Integer numIT = Contract.countContractsByCategory(Cat.IT);
+		String numITContracts = numIT.toString();
+		catITLabel = new JLabel("Contracts in IT: " + numITContracts);
+		catITLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		catITLabel.setForeground(red);
+		panel5.add(catITLabel);
+		PieChart pieChart = new PieChart(numIT);
+		panel5.add(pieChart);
+
+	}
+	
+	
 	
 }
