@@ -2,7 +2,11 @@ package main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class UserInterface extends JFrame {
@@ -28,6 +32,17 @@ public class UserInterface extends JFrame {
 		headerLabel.setForeground(lightBlue);
 		panel.add(headerLabel);
 		
+		BufferedImage heroImage; 
+		JLabel picture1 = new JLabel();
+		
+		
+		try {
+		heroImage = ImageIO.read(new File("/Users/user/eclipse-workspace/heroImage.jpg"));
+		picture1 = new JLabel(new ImageIcon(heroImage));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		panel.add(picture1);
 		
 		
 		this.setLocationRelativeTo(null);
