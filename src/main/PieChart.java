@@ -71,7 +71,7 @@ public class PieChart extends JPanel {
 			g2d.setColor(backgroundColor);
 			g2d.fillOval(0, 0, width, width);
 			g2d.setColor(mainColor);
-			Double angle = (percent / 5) * 360;
+			Double angle = (percent / 7) * 360;
 			g2d.fillArc(0, 0, width, width, -270, -angle.intValue());
  
 		} else if (type == Type.STANDARD) {

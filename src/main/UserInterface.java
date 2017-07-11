@@ -29,6 +29,8 @@ public class UserInterface extends JFrame {
 	JPanel panel4;
 	JPanel panelSpacer2;
 	JPanel panel5;
+	JPanel panelSpacer3;
+	JPanel panel6;
 //	PieChart pieChart;
 	JPanel panelCategories;
 	JLabel headerLabel;
@@ -38,12 +40,17 @@ public class UserInterface extends JFrame {
 	JLabel pipelineLabel;
 	JLabel expiredLabel;
 	JLabel catITLabel;
+	JLabel catFacilitiesLabel;
 	Color white = Color.decode("#ffffff");
 	Color red = Color.decode("#aa0000");
 	Color lightBlue = Color.decode("#8dd9f1");
 	Color progressBlue = Color.decode("#1353ef");
 	Color green = Color.decode("#00aa00");
 	Color orange = Color.decode("#ffaa00");
+	Color pastelBlue = Color.decode("#8dd9f1");
+	Color pastelGreen = Color.decode("#77dd77");
+	Color pastelOrange = Color.decode("#ffcc88");
+	Color pastelRed = Color.decode("#ffaaaa");
 
 	public static void main(String[] args) {
 		new UserInterface();
@@ -57,7 +64,7 @@ public class UserInterface extends JFrame {
         Contract.deleteAll();
         Contract contract1 = new Contract("200 MacBook Pros", "Edward Ng", 1, Status.LIVE, Cat.IT, 1, "2017-07-07", "2018-07-07", 40000, 45000, "Procurement of new laptops for new location in Aberdeen");
         contract1.save();
-        Contract contract2 = new Contract("1000 CodeClan pens", "Edward Ng", 2, Status.PIPELINE, Cat.MARKETING, 4, "2017-10-10", "2018-10-10", 3000, 3000, "Procurement of promotional pens for events and students");
+        Contract contract2 = new Contract("1000 CodeClan pens", "Edward Ng", 2, Status.PIPELINE, Cat.TELECOM, 4, "2017-10-10", "2018-10-10", 3000, 3000, "Procurement of promotional pens for events and students");
         contract2.save();
         Contract contract3 = new Contract("2 Soap Dispensers", "Edward Ng", 3, Status.EXPIRED, Cat.FACILITIES, 2, "2016-05-07", "2017-05-07", 1000, 1500, "Wall mounted soap dispensers");
         contract3.save();
@@ -70,7 +77,7 @@ public class UserInterface extends JFrame {
         Contract contract7 = new Contract("Projectors", "Edward Ng", 3, Status.EXPIRED, Cat.FACILITIES, 2, "2017-08-09", "2018-08-09", 5000, 4600, "Fruit to keep students healthy");
         contract7.save();
 		
-		this.setSize(300, 500);
+		this.setSize(300, 550);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Contract Award Manager");
 		
@@ -99,17 +106,17 @@ public class UserInterface extends JFrame {
 		
 		panel2 = new JPanel();
 		panel.add(panel2);		
-		panel2.setBackground(green);
+		panel2.setBackground(pastelGreen);
 		liveContracts();
 
 		panel3 = new JPanel();
 		panel.add(panel3);		
-		panel3.setBackground(orange);
+		panel3.setBackground(pastelOrange);
 		pipelineContracts();
 
 		panel4 = new JPanel();
 		panel.add(panel4);		
-		panel4.setBackground(red);
+		panel4.setBackground(pastelRed);
 		expiredContracts();
 
 		panelSpacer2 = new JPanel();
@@ -117,14 +124,24 @@ public class UserInterface extends JFrame {
 		panel.add(panelSpacer2);		
 		panelSpacer2.setBackground(white);
 
+		panelCategories = new JPanel();
+		panel.add(panelCategories);		
+		panelCategories.setBackground(white);
+
 		panel5 = new JPanel();
 		panel.add(panel5);		
 		panel5.setBackground(white);
 		categoriesIT();
 
-//		panelCategories = new JPanel();
-//		panel.add(panelCategories);		
-//		panelCategories.setBackground(white);
+		panelSpacer3 = new JPanel();
+		panelSpacer3.setBorder(new EmptyBorder(1, 300, 1, 0));
+		panel.add(panelSpacer3);		
+		panelSpacer3.setBackground(white);
+		
+		panel6 = new JPanel();
+		panel.add(panel6);		
+		panel6.setBackground(white);
+		categoriesFacilities();
 		
 
 		this.setLocationRelativeTo(null);
@@ -204,9 +221,18 @@ public class UserInterface extends JFrame {
 		panel5.add(catITLabel);
 		PieChart pieChart = new PieChart(numIT);
 		panel5.add(pieChart);
-
 	}
 	
+	public void categoriesFacilities() {
+		Integer num = Contract.countContractsByCategory(Cat.FACILITIES);
+		String numContracts = num.toString();
+		catFacilitiesLabel = new JLabel("Contracts in Facilities: " + numContracts);
+		catFacilitiesLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		catFacilitiesLabel.setForeground(red);
+		panel6.add(catFacilitiesLabel);
+		PieChart pieChart = new PieChart(num);
+		panel6.add(pieChart);
+	}
 	
 	
 }
