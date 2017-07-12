@@ -86,12 +86,12 @@ public class UserInterface extends JFrame {
         Contract contract7 = new Contract("Projectors", "Edward Ng", 3, Status.EXPIRED, Cat.FACILITIES, 2, "2017-08-09", "2018-08-09", 5000, 4600, "Fruit to keep students healthy");
         contract7.save();
 		
-		this.setSize(300, 550);
+		this.setSize(300, 580);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Contract Award Manager");
 		
 		panel = new JPanel();
-		panel.setBorder(new EmptyBorder(20, 0, 50, 0));
+		panel.setBorder(new EmptyBorder(10, 0, 50, 0));
 		this.add(panel);		
 		panel.setBackground(white);
 
@@ -108,8 +108,9 @@ public class UserInterface extends JFrame {
 		panelSpacer.setBackground(white);
 		
 		heroImage();
-		progressBar();
 		progressLabel();
+		progressBar();
+		budget();
 
 		statusLabel();
 		
@@ -204,11 +205,31 @@ public class UserInterface extends JFrame {
 		budgetSpent.setForeground(Color.red);
 		panel.add(budgetSpent);
 	}
+
+	public void budget() {
+		JPanel progressPanel = new JPanel();
+		progressPanel.setSize(50, 20);
+		progressPanel.setBackground(pastelRed);
+		//progressPanel.setBorder(new EmptyBorder(2, 50, 2, 0));
+		panel.add(progressPanel);
+		
+		JLabel label = new JLabel("£" + buyer.totalActualSpend());
+		label.setFont(new Font("Arial", Font.BOLD, 16));
+		label.setForeground(white);
+		
+		JPanel budgetSpent = new JPanel();
+		budgetSpent.setSize(50, 16);
+//		progressPanel.setBorder(new EmptyBorder(5, 50, 5, 0));
+		budgetSpent.setBackground(red);
+		budgetSpent.setForeground(red);
+		budgetSpent.add(label);
+		progressPanel.add(budgetSpent);
+	}
 	
 	public void progressLabel() {
-		progressLabel = new JLabel("of budget spent");
-		progressLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-		progressLabel.setForeground(progressBlue);
+		progressLabel = new JLabel("Amount of £" + buyer.getBudget() + " budget spent           ");
+		progressLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		progressLabel.setForeground(lightBlue);
 		panel.add(progressLabel);
 	}
 
