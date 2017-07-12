@@ -52,6 +52,7 @@ public class UserInterface extends JFrame {
 	Color white = Color.decode("#ffffff");
 	Color red = Color.decode("#aa0000");
 	Color lightBlue = Color.decode("#8dd9f1");
+	Color headingBlue = Color.decode("#6db9d1");
 	Color progressBlue = Color.decode("#1353ef");
 	Color green = Color.decode("#00aa00");
 	Color orange = Color.decode("#ffaa00");
@@ -179,7 +180,7 @@ public class UserInterface extends JFrame {
 	public void statusLabel() {
 		statusLabel = new JLabel("Contract Status                                        ");
 		statusLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		statusLabel.setForeground(lightBlue);
+		statusLabel.setForeground(headingBlue);
 		panel.add(statusLabel);
 	}
 
@@ -229,7 +230,7 @@ public class UserInterface extends JFrame {
 	public void progressLabel() {
 		progressLabel = new JLabel("Amount of £" + buyer.getBudget() + " budget spent           ");
 		progressLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		progressLabel.setForeground(lightBlue);
+		progressLabel.setForeground(headingBlue);
 		panel.add(progressLabel);
 	}
 
@@ -297,7 +298,7 @@ public class UserInterface extends JFrame {
 	public void categoriesLabel() {
 		categoriesLabel = new JLabel("Categories                                           ");
 		categoriesLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		categoriesLabel.setForeground(lightBlue);
+		categoriesLabel.setForeground(headingBlue);
 		panel.add(categoriesLabel);
 	}
 
