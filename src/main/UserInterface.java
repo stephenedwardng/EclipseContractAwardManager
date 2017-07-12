@@ -24,6 +24,7 @@ public class UserInterface extends JFrame {
 	JPanel panelHero;
 	JPanel panelSpacer;
 	JPanel panelBody;
+	JLabel statusLabel;
 	JPanel panel2;
 	JPanel panel3;
 	JPanel panel4;
@@ -36,11 +37,15 @@ public class UserInterface extends JFrame {
 //	PieChart pieChart;
 	JPanel panelCategories;
 	JLabel headerLabel;
+	JLabel categoriesLabel;
 	JProgressBar budgetSpent;
 	JLabel progressLabel;
 	JLabel liveLabel;
+	JLabel liveLabelNo;
 	JLabel pipelineLabel;
+	JLabel pipelineLabelNo;
 	JLabel expiredLabel;
+	JLabel expiredLabelNo;
 	JLabel catITLabel;
 	JLabel catFacilitiesLabel;
 	JLabel catTelecomLabel;
@@ -52,6 +57,7 @@ public class UserInterface extends JFrame {
 	Color orange = Color.decode("#ffaa00");
 	Color pastelBlue = Color.decode("#8dd9f1");
 	Color pastelGreen = Color.decode("#77dd77");
+	Color bgGreen = Color.decode("#55bb55");
 	Color pastelOrange = Color.decode("#ffcc88");
 	Color pastelRed = Color.decode("#ffaaaa");
 
@@ -87,7 +93,7 @@ public class UserInterface extends JFrame {
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(20, 0, 50, 0));
 		this.add(panel);		
-		panel.setBackground(Color.white);
+		panel.setBackground(white);
 
 		headerLabel();
 
@@ -105,7 +111,7 @@ public class UserInterface extends JFrame {
 		progressBar();
 		progressLabel();
 
-		
+		statusLabel();
 		
 		panel2 = new JPanel();
 		panel.add(panel2);		
@@ -126,6 +132,8 @@ public class UserInterface extends JFrame {
 		panelSpacer2.setBorder(new EmptyBorder(5, 300, 5, 0));
 		panel.add(panelSpacer2);		
 		panelSpacer2.setBackground(white);
+		
+		categoriesLabel();
 
 		panelCategories = new JPanel();
 		panel.add(panelCategories);		
@@ -166,7 +174,14 @@ public class UserInterface extends JFrame {
 		headerLabel.setForeground(lightBlue);
 		panel.add(headerLabel);
 	}
-	
+
+	public void statusLabel() {
+		statusLabel = new JLabel("Contract Status                                        ");
+		statusLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		statusLabel.setForeground(lightBlue);
+		panel.add(statusLabel);
+	}
+
 	public void heroImage() {
 		BufferedImage heroImage; 
 		JLabel picture1 = new JLabel();
@@ -200,28 +215,69 @@ public class UserInterface extends JFrame {
 	public void liveContracts() {
 		Integer numLive = Contract.countContractsByStatus(Status.LIVE);
 		String numLiveContracts = numLive.toString();
-		liveLabel = new JLabel(numLiveContracts + " live contracts");
+//		liveLabel = new JLabel(numLiveContracts + " live contracts");
+//		liveLabel.setFont(new Font("Arial", Font.BOLD, 16));
+//		liveLabel.setForeground(white);
+//		panel2.add(liveLabel);
+
+		liveLabelNo = new JLabel(numLiveContracts);
+		liveLabelNo.setFont(new Font("Arial", Font.BOLD, 36));
+		liveLabelNo.setForeground(white);
+		panel2.add(liveLabelNo);
+
+		liveLabel = new JLabel(" live");
 		liveLabel.setFont(new Font("Arial", Font.BOLD, 16));
 		liveLabel.setForeground(white);
 		panel2.add(liveLabel);
+
 	}
 	
 	public void pipelineContracts() {
 		Integer numPipeline = Contract.countContractsByStatus(Status.PIPELINE);
 		String numPipelineContracts = numPipeline.toString();
-		pipelineLabel = new JLabel(numPipelineContracts + " pipeline contracts");
-		pipelineLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+//		pipelineLabel = new JLabel(numPipelineContracts + " pipeline contracts");
+//		pipelineLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+//		pipelineLabel.setForeground(white);
+//		panel3.add(pipelineLabel);
+
+		pipelineLabelNo = new JLabel(numPipelineContracts);
+		pipelineLabelNo.setFont(new Font("Arial", Font.BOLD, 36));
+		pipelineLabelNo.setForeground(white);
+		panel3.add(pipelineLabelNo);
+		
+		pipelineLabel = new JLabel(" pipeline");
+		pipelineLabel.setFont(new Font("Arial", Font.BOLD, 16));
 		pipelineLabel.setForeground(white);
 		panel3.add(pipelineLabel);
+
+
 	}
 
 	public void expiredContracts() {
 		Integer numExpired = Contract.countContractsByStatus(Status.EXPIRED);
 		String numExpiredContracts = numExpired.toString();
-		expiredLabel = new JLabel(numExpiredContracts + " expired contracts");
-		expiredLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+//		expiredLabel = new JLabel(numExpiredContracts + " expired contracts");
+//		expiredLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+//		expiredLabel.setForeground(white);
+//		panel4.add(expiredLabel);
+
+		expiredLabelNo = new JLabel(numExpiredContracts);
+		expiredLabelNo.setFont(new Font("Arial", Font.BOLD, 36));
+		expiredLabelNo.setForeground(white);
+		panel4.add(expiredLabelNo);
+
+		expiredLabel = new JLabel(" expired");
+		expiredLabel.setFont(new Font("Arial", Font.BOLD, 16));
 		expiredLabel.setForeground(white);
 		panel4.add(expiredLabel);
+}
+
+	
+	public void categoriesLabel() {
+		categoriesLabel = new JLabel("Categories                                           ");
+		categoriesLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+		categoriesLabel.setForeground(lightBlue);
+		panel.add(categoriesLabel);
 	}
 
 	public void categoriesIT() {
