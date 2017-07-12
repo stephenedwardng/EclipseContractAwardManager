@@ -284,7 +284,7 @@ public class UserInterface extends JFrame {
 		Integer numIT = Contract.countContractsByCategory(Cat.IT);
 		String numITContracts = numIT.toString();
 		catITLabel = new JLabel("Contracts in IT: " + numITContracts);
-		catITLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		catITLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		catITLabel.setForeground(red);
 		panel5.add(catITLabel);
 		PieChart pieChart = new PieChart(numIT);
@@ -295,7 +295,7 @@ public class UserInterface extends JFrame {
 		Integer num = Contract.countContractsByCategory(Cat.FACILITIES);
 		String numContracts = num.toString();
 		catFacilitiesLabel = new JLabel("Contracts in Facilities: " + numContracts);
-		catFacilitiesLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		catFacilitiesLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		catFacilitiesLabel.setForeground(red);
 		panel6.add(catFacilitiesLabel);
 		PieChart pieChart = new PieChart(num);
@@ -306,7 +306,7 @@ public class UserInterface extends JFrame {
 		Integer num = Contract.countContractsByCategory(Cat.TELECOM);
 		String numContracts = num.toString();
 		catTelecomLabel = new JLabel("Contracts in Telecom: " + numContracts);
-		catTelecomLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		catTelecomLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		catTelecomLabel.setForeground(red);
 		panel7.add(catTelecomLabel);
 		PieChart pieChart = new PieChart(num);
