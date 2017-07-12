@@ -53,9 +53,9 @@ public class UserInterface extends JFrame {
 	Color red = Color.decode("#aa0000");
 	Color lightBlue = Color.decode("#8dd9f1");
 	Color headingBlue = Color.decode("#6db9d1");
-	Color progressBlue = Color.decode("#1353ef");
+	Color progressBlue = Color.decode("#63a3ff");
 	Color green = Color.decode("#00aa00");
-	Color orange = Color.decode("#ffaa00");
+	Color orange = Color.decode("#ee7700");
 	Color pastelBlue = Color.decode("#8dd9f1");
 	Color pastelGreen = Color.decode("#77dd77");
 	Color bgGreen = Color.decode("#55bb55");
@@ -210,7 +210,7 @@ public class UserInterface extends JFrame {
 	public void budget() {
 		JPanel progressPanel = new JPanel();
 		progressPanel.setSize(50, 20);
-		progressPanel.setBackground(pastelRed);
+		progressPanel.setBackground(white);
 		//progressPanel.setBorder(new EmptyBorder(2, 50, 2, 0));
 		panel.add(progressPanel);
 		
@@ -221,8 +221,18 @@ public class UserInterface extends JFrame {
 		JPanel budgetSpent = new JPanel();
 		budgetSpent.setSize(50, 16);
 //		progressPanel.setBorder(new EmptyBorder(5, 50, 5, 0));
-		budgetSpent.setBackground(red);
-		budgetSpent.setForeground(red);
+		
+		if (report.percentageBudgetSpent() > 99) {
+			budgetSpent.setBackground(red);
+			budgetSpent.setForeground(red);
+		} else if (report.percentageBudgetSpent() > 80) {
+			budgetSpent.setBackground(orange);
+			budgetSpent.setForeground(orange);			
+		} else {
+			budgetSpent.setBackground(progressBlue);
+			budgetSpent.setForeground(progressBlue);
+		}
+		
 		budgetSpent.add(label);
 		progressPanel.add(budgetSpent);
 	}
